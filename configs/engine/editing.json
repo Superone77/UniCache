@@ -1,0 +1,13 @@
+{
+  "task": {"task_type": "editing", "prompt": "", "source_images": [], "output_modality": "image"},
+  "plugins": ["bagel_typed", "h2o", "kivi"],
+  "planners": [{"id": "bagel_typed_segments", "enabled": true}],
+  "rules": [
+    {"id": "instruction_h2o", "match": {"segment_id": "instruction", "phases": ["denoise"]}, "operator": "h2o_physical_gqa", "params": {"target_budget_ratio": 0.2, "recent_budget_fraction": 0.25, "selection_frozen": true}, "stage": "attention"},
+    {"id": "source_vit_h2o", "match": {"segment_id": "source_vit", "phases": ["denoise"]}, "operator": "h2o_physical_gqa", "params": {"target_budget_ratio": 0.2, "recent_budget_fraction": 0.25, "selection_frozen": true}, "stage": "attention"},
+    {"id": "source_vae_kivi", "match": {"segment_id": "source_vae", "phases": ["denoise"]}, "operator": "kivi_packed_quantization", "params": {"bits": 2, "group_size": 128, "residual_length": 32, "backend": "cuda"}, "stage": "pre_attention"},
+    {"id": "boundary_protect", "match": {"segment_id": "boundary"}, "operator": "protect", "stage": "attention"},
+    {"id": "current_vae_protect", "match": {"segment_id": "current_vae"}, "operator": "protect", "stage": "attention"}
+  ],
+  "runtime": {"plan_only": false, "fail_on_conflict": true, "physical_backend": true}
+}

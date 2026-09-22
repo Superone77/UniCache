@@ -1,0 +1,397 @@
+{
+  "source_project": "BAGEL with UniCache inference changes",
+  "source_commit": "d6d3f494cca7f9ae4274cecb4137c65ff7658a8b",
+  "files": [
+    {
+      "source": "unicache/__init__.py",
+      "destination": "unicache/__init__.py",
+      "source_sha256": "ba640d66566f331dd14d5ed2a89763d61f3d5cbbc390e97a06f34c9918b09f9b"
+    },
+    {
+      "source": "unicache/adapters/__init__.py",
+      "destination": "unicache/adapters/__init__.py",
+      "source_sha256": "e1bc70272a8e252c78d1be28793205358acbd07391f43ee620f3406718fbe944"
+    },
+    {
+      "source": "unicache/adapters/bagel.py",
+      "destination": "unicache/adapters/bagel.py",
+      "source_sha256": "d0a88652bfc2140dc16f5f228a4cfa97df0af792d5c3575463ec6f73a20ea012"
+    },
+    {
+      "source": "unicache/core/__init__.py",
+      "destination": "unicache/core/__init__.py",
+      "source_sha256": "8528fbb4cb2be4cda3384adeb4fe75a49b8a6bace4bb24570f87e0b035b010ae"
+    },
+    {
+      "source": "unicache/core/capabilities.py",
+      "destination": "unicache/core/capabilities.py",
+      "source_sha256": "4f52218d4448f2dd5b147dd469e40c31de74100d980d0cfd3a63aaddfaca75e9"
+    },
+    {
+      "source": "unicache/core/constants.py",
+      "destination": "unicache/core/constants.py",
+      "source_sha256": "463cedec11266931695936e90195f50c57f3dbd63b5036ca79da83f2f15f9910"
+    },
+    {
+      "source": "unicache/core/decisions.py",
+      "destination": "unicache/core/decisions.py",
+      "source_sha256": "c412db581aa2b8d303210e1b3da3661d2d671eac36c7da48c2c2caa4865b3484"
+    },
+    {
+      "source": "unicache/core/matching.py",
+      "destination": "unicache/core/matching.py",
+      "source_sha256": "84febe43f17516705c031b0f31ddcba17a7cd6687130fb6d1082d235762f1641"
+    },
+    {
+      "source": "unicache/core/registry.py",
+      "destination": "unicache/core/registry.py",
+      "source_sha256": "9e0d18260180b1e9a94347c8f2c29e7cc6fb9678eda4da44dbb6fcbeffc5705a"
+    },
+    {
+      "source": "unicache/core/schema.py",
+      "destination": "unicache/core/schema.py",
+      "source_sha256": "e6953cf849c1b7a89f2efaf8feda93158dc7f7a23abb2457fabef7ab903591c2"
+    },
+    {
+      "source": "unicache/core/storage.py",
+      "destination": "unicache/core/storage.py",
+      "source_sha256": "b9f85f2d3b178c5de35fea223c1b30948da75f52567909c0ebedbff0a8262e2e"
+    },
+    {
+      "source": "unicache/current_state/__init__.py",
+      "destination": "unicache/current_state/__init__.py",
+      "source_sha256": "1c63708b575b370a8aaeedf3c3c05d299ebcdb5f3685923e89a9bd2befd7cbac"
+    },
+    {
+      "source": "unicache/current_state/builtin.py",
+      "destination": "unicache/current_state/builtin.py",
+      "source_sha256": "04f956f93bb71aa3c51977b32139793b3307084c399afa9d672517e9c449f9fb"
+    },
+    {
+      "source": "unicache/efficiency/__init__.py",
+      "destination": "unicache/efficiency/__init__.py",
+      "source_sha256": "5bf2d793f0d4027e5758f77dfd224fc82900c806f8f75f67285f792ce3477984"
+    },
+    {
+      "source": "unicache/efficiency/recorder.py",
+      "destination": "unicache/efficiency/recorder.py",
+      "source_sha256": "5139b7e4636982776406432a78fde008c446dc785bff10656f6ecc2c5b2e9626"
+    },
+    {
+      "source": "unicache/metrics/__init__.py",
+      "destination": "unicache/metrics/__init__.py",
+      "source_sha256": "7a460c695846fbe5708be8386df1bb39fed43e8c54c2874a3cf2d17b07ba0b3b"
+    },
+    {
+      "source": "unicache/metrics/attention.py",
+      "destination": "unicache/metrics/attention.py",
+      "source_sha256": "6c0d2ff421aa6dcd02f63c78f9af6864f35dd2fa14a4448578cbd7e5cb092126"
+    },
+    {
+      "source": "unicache/operators/__init__.py",
+      "destination": "unicache/operators/__init__.py",
+      "source_sha256": "75be405a74204dcdd9366985a6a51ce97b27ba418e7d2d90f9080bd75c885c91"
+    },
+    {
+      "source": "unicache/operators/builtin.py",
+      "destination": "unicache/operators/builtin.py",
+      "source_sha256": "da58266bb9198b0f11f3dd2a07a4c391b138e33b2a0957ad96b6cf80af9fc856"
+    },
+    {
+      "source": "unicache/operators/classic.py",
+      "destination": "unicache/operators/classic.py",
+      "source_sha256": "141cb59e0c79369a3118a6c877ed1d187926d1b603e5985769b311ddfdbe1d10"
+    },
+    {
+      "source": "unicache/operators/h2o.py",
+      "destination": "unicache/operators/h2o.py",
+      "source_sha256": "b7e8a6e7e29aa811542f842fc94324565a355a2d21aa5af444b890b409262d5d"
+    },
+    {
+      "source": "unicache/operators/lifetime.py",
+      "destination": "unicache/operators/lifetime.py",
+      "source_sha256": "edbed4e32293cdd68e3b649e4f28784d8d583933c7e50cfe7a526d777cf82141"
+    },
+    {
+      "source": "unicache/operators/physical.py",
+      "destination": "unicache/operators/physical.py",
+      "source_sha256": "02d1a1cb4a0e72aa62a49db14cc5486ceab53d6dd736a99d668082e166d88444"
+    },
+    {
+      "source": "unicache/planning/__init__.py",
+      "destination": "unicache/planning/__init__.py",
+      "source_sha256": "642e2b2ebdc93cc5f3a49999b79f3f3ed802456b6ab6b7f109465c9df5e1eaec"
+    },
+    {
+      "source": "unicache/planning/assignment.py",
+      "destination": "unicache/planning/assignment.py",
+      "source_sha256": "ef5d541c06a0905d113e3a5199d03d241f4c97c7578d712dd7550388bb90c932"
+    },
+    {
+      "source": "unicache/planning/execution.py",
+      "destination": "unicache/planning/execution.py",
+      "source_sha256": "cb7ce4544c16eae8093951e2f82b9a9c5a666830fecc2df162d4775ebc130f1d"
+    },
+    {
+      "source": "unicache/planning/planners.py",
+      "destination": "unicache/planning/planners.py",
+      "source_sha256": "92f8d1afa946674d25062974e6afa0b3d34eb7f9c4fa2037a7c6200103e08f58"
+    },
+    {
+      "source": "unicache/routing/__init__.py",
+      "destination": "unicache/routing/__init__.py",
+      "source_sha256": "16241b87f2cc40a6070a7fe763807cd9798bb23785dce7a86c129cbb1d43e704"
+    },
+    {
+      "source": "unicache/routing/k90.py",
+      "destination": "unicache/routing/k90.py",
+      "source_sha256": "6dfbc59384de83b427f69ce3b80cd9b9985ebbae355db6801415eef7edb57389"
+    },
+    {
+      "source": "unicache/runtime/__init__.py",
+      "destination": "unicache/runtime/__init__.py",
+      "source_sha256": "598173fd65488085897fda113f2ac4891a13929ea74f5e791dc094bd7603ed2a"
+    },
+    {
+      "source": "unicache/runtime/builder.py",
+      "destination": "unicache/runtime/builder.py",
+      "source_sha256": "6eef5f12cf9575eda127ced42e9eec0deebc19685f54ae463bd884d8c3130f19"
+    },
+    {
+      "source": "unicache/runtime/defaults.py",
+      "destination": "unicache/runtime/defaults.py",
+      "source_sha256": "f0b4907ffd7c99e7cb82f686af2eb206ec22cf054d4da082ef9c4f5faa920d08"
+    },
+    {
+      "source": "unicache/schedulers/__init__.py",
+      "destination": "unicache/schedulers/__init__.py",
+      "source_sha256": "c826459253c17d32c6ce31e1310bb393f3450c96e1fd23817857edd6a44b1bc1"
+    },
+    {
+      "source": "unicache/schedulers/builtin.py",
+      "destination": "unicache/schedulers/builtin.py",
+      "source_sha256": "a0ff017f2f6df20899b642dba4458fb34b343d1f5a30d7cb14f51aac1b132662"
+    },
+    {
+      "source": "unicache/storage/__init__.py",
+      "destination": "unicache/storage/__init__.py",
+      "source_sha256": "b49d592c1fe15d3c48ee7c3cc0760ddc4c9a9a2c88a58b313cc55d441227eca5"
+    },
+    {
+      "source": "unicache/storage/hierarchy.py",
+      "destination": "unicache/storage/hierarchy.py",
+      "source_sha256": "9108f1deb0e1c3f522880fc5c727aaf9d8641f311632e199b986df6443d06d4e"
+    },
+    {
+      "source": "unicache/storage/kivi_cuda.py",
+      "destination": "unicache/storage/kivi_cuda.py",
+      "source_sha256": "fca7e4513144eef93240c9a62bc2f599dcf1c39ab634b87be08b32e7607e2ae6"
+    },
+    {
+      "source": "unicache/storage/kivi_triton.py",
+      "destination": "unicache/storage/kivi_triton.py",
+      "source_sha256": "bc20dcadb2560c9927cc36e478d732eab2c1e3bef59ef9cf6da437654d7149ee"
+    },
+    {
+      "source": "unicache/storage/physical.py",
+      "destination": "unicache/storage/physical.py",
+      "source_sha256": "b3fc72f12110033ed74e94d5c32d7ef8aea174da6590c3ec3e58c44b1cb21653"
+    },
+    {
+      "source": "unicache/storage/tensor_backend.py",
+      "destination": "unicache/storage/tensor_backend.py",
+      "source_sha256": "028c3218a4cd6785623ad130b70ce52a7cb009c4b09d19f59a5b477a6a7d4ecc"
+    },
+    {
+      "source": "modeling/__init__.py",
+      "destination": "modeling/__init__.py",
+      "source_sha256": "1e1ecaf1647bcc5bf62cc435a594b97e664cdd7758cce7b48c39e1725a3d5099"
+    },
+    {
+      "source": "modeling/autoencoder.py",
+      "destination": "modeling/autoencoder.py",
+      "source_sha256": "57941c0c14b9487e9a95f4d048755ab5ad4b75d144874009e3ba8a0302e68efa"
+    },
+    {
+      "source": "modeling/bagel/__init__.py",
+      "destination": "modeling/bagel/__init__.py",
+      "source_sha256": "59d4106be415927bbc41c325b7a5df52e3a02ec1c701aa9655dd5e2f1aeaf90e"
+    },
+    {
+      "source": "modeling/bagel/bagel.py",
+      "destination": "modeling/bagel/bagel.py",
+      "source_sha256": "3e089917098538e57756fb2e509d9275dc1f30c2aa2c8ffaeb8d96e8a2b6407b"
+    },
+    {
+      "source": "modeling/bagel/modeling_utils.py",
+      "destination": "modeling/bagel/modeling_utils.py",
+      "source_sha256": "6fe5eed0513a462c28cccd8ec86d5496b774667fa6f04be8f70e6595baf3f323"
+    },
+    {
+      "source": "modeling/bagel/qwen2_navit.py",
+      "destination": "modeling/bagel/qwen2_navit.py",
+      "source_sha256": "4ca4979358ef48ce52301adbef9ebac86c2c2ff681962b68999718a056159f2e"
+    },
+    {
+      "source": "modeling/bagel/siglip_navit.py",
+      "destination": "modeling/bagel/siglip_navit.py",
+      "source_sha256": "9029e3fbe18d205fe0336c401747c0cbe22c5f829c1a99381dd298d52aa11aa7"
+    },
+    {
+      "source": "modeling/cache_utils/duca.py",
+      "destination": "modeling/cache_utils/duca.py",
+      "source_sha256": "5117c301e5e5c9097a00c5b379760a07233a582fe56350bac19d9f14be8cdf99"
+    },
+    {
+      "source": "modeling/cache_utils/taylorseer.py",
+      "destination": "modeling/cache_utils/taylorseer.py",
+      "source_sha256": "353a560c7b3164766f797020322a8e40d329ee3c3cc09c656dbe8d5522068dae"
+    },
+    {
+      "source": "modeling/qwen2/__init__.py",
+      "destination": "modeling/qwen2/__init__.py",
+      "source_sha256": "c98f7445ec6af14d32d650436b754f74c281e91d22e82a6115264c355bd75ecf"
+    },
+    {
+      "source": "modeling/qwen2/configuration_qwen2.py",
+      "destination": "modeling/qwen2/configuration_qwen2.py",
+      "source_sha256": "541074d10078a144914b6104dbab6af0c6030ad2695526896c1e6231603136a1"
+    },
+    {
+      "source": "modeling/qwen2/modeling_qwen2.py",
+      "destination": "modeling/qwen2/modeling_qwen2.py",
+      "source_sha256": "c8935e385d15836a7ece216ae9a3414035e085db50f6bc906aeef791119a56ee"
+    },
+    {
+      "source": "modeling/qwen2/tokenization_qwen2.py",
+      "destination": "modeling/qwen2/tokenization_qwen2.py",
+      "source_sha256": "5add04cc0ef8e8549151cc7babe733d93ed8739aa265acb49073c0ad129abd48"
+    },
+    {
+      "source": "modeling/qwen2/tokenization_qwen2_fast.py",
+      "destination": "modeling/qwen2/tokenization_qwen2_fast.py",
+      "source_sha256": "7f4177e86f80e3feabc67d32ff6135896c280f37cceaec2f43703e50aef82b9c"
+    },
+    {
+      "source": "modeling/siglip/__init__.py",
+      "destination": "modeling/siglip/__init__.py",
+      "source_sha256": "1a0470f5ee0139f8387626302107efedb2349d5caef8ea23ed3416cbc5229c60"
+    },
+    {
+      "source": "modeling/siglip/configuration_siglip.py",
+      "destination": "modeling/siglip/configuration_siglip.py",
+      "source_sha256": "3064249ae6b6f330a69fa9f1d79dd48b4e12f2ba9aae11d805625275299913ef"
+    },
+    {
+      "source": "modeling/siglip/image_processing_siglip.py",
+      "destination": "modeling/siglip/image_processing_siglip.py",
+      "source_sha256": "2455839b8360701f440824af3af2417ed21f10283d649d6929b66932260428c7"
+    },
+    {
+      "source": "modeling/siglip/modeling_siglip.py",
+      "destination": "modeling/siglip/modeling_siglip.py",
+      "source_sha256": "d601ad9987922ba8b0fa59ef35654c1b8da2b300d69bc3dde5f10d1356d879fd"
+    },
+    {
+      "source": "modeling/siglip/processing_siglip.py",
+      "destination": "modeling/siglip/processing_siglip.py",
+      "source_sha256": "c70d6be66a05b42d7dbf568a9fd309d7c90fbe02d56db32daa83af2882d696b4"
+    },
+    {
+      "source": "modeling/siglip/tokenization_siglip.py",
+      "destination": "modeling/siglip/tokenization_siglip.py",
+      "source_sha256": "04631ab91c49b47d3d9be8032ca4488f9280ffc8fc2eb1701bc2297b535536e0"
+    },
+    {
+      "source": "data/__init__.py",
+      "destination": "data/__init__.py",
+      "source_sha256": "15397311214f7a0755342060a6722a15cbed23bc5a94948bbd2ba42d36b92f9e"
+    },
+    {
+      "source": "data/data_utils.py",
+      "destination": "data/data_utils.py",
+      "source_sha256": "38979dffa64dc32b5c1ddd65b592ee2b084af6c9fec1133c547b762e4394615b"
+    },
+    {
+      "source": "data/transforms.py",
+      "destination": "data/transforms.py",
+      "source_sha256": "39b215df50a2eefd920a65886925e7d933161d55f4bcb51fb04e5921dc763ce4"
+    },
+    {
+      "source": "inferencer.py",
+      "destination": "inferencer.py",
+      "source_sha256": "f4708b07e547474b2d2223626bd8ef336d764b77633e58cb2907edbbc5dd1846"
+    },
+    {
+      "source": "LICENSE",
+      "destination": "LICENSE",
+      "source_sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1"
+    },
+    {
+      "source": "run_unicache_noop_inference.py",
+      "destination": "infer.py",
+      "source_sha256": "acad85345f5b8607fc87a8cb4fcd17ca6342f7a6b349bd5e1643bb67f05027d3"
+    },
+    {
+      "source": "scripts/experiments/unicache_efficiency_mve/patches/kivi_long_query_outer_dim.patch",
+      "destination": "patches/kivi_long_query_outer_dim.patch",
+      "source_sha256": "bea7b7d64bb4559da2c5a3f418b62525fadd4f9af47fb49ea0c45ac128071efc"
+    },
+    {
+      "source": "unicache/validation/physical_efficiency_tests.py",
+      "destination": "tests/test_physical.py",
+      "source_sha256": "00b19bf0f780506460cfc79c165a3bc86a0a43b5562582440062467e0f9bc8ff"
+    },
+    {
+      "source": "unicache/validation/fixed_type_policy_tests.py",
+      "destination": "tests/test_fixed_type.py",
+      "source_sha256": "1e6a319dd7c2d0f92f132e068aa2b441bd04cf1ea0fad71b27d86934cd13fd37"
+    },
+    {
+      "source": "unicache/configs/fixed_type_understanding.json",
+      "destination": "tests/fixtures/fixed_type_understanding.json",
+      "source_sha256": "d5e9dc86163df995ccec91f43f930be72cee57bf206a939c70f38ee2c1f74a06"
+    },
+    {
+      "source": "unicache/configs/fixed_type_generation.json",
+      "destination": "tests/fixtures/fixed_type_generation.json",
+      "source_sha256": "5502a7a955474bf9fa978ae45048e2d3879865459da05792e27ffb1f99e78b57"
+    },
+    {
+      "source": "unicache/configs/fixed_type_editing.json",
+      "destination": "tests/fixtures/fixed_type_editing.json",
+      "source_sha256": "1c0df51c936a70e4250d3e48ea504a7c7c2e9ec6f9ff817757b80ec7c2c9f648"
+    },
+    {
+      "source": "unicache/configs/fixed_type_understanding_attention_mass_r20_chunked.json",
+      "destination": "configs/torch/understanding.json",
+      "source_sha256": "d39a9fac7ab208f4b96d6824f3b6513ab61195ade3b6775c0bf570cbee679e17"
+    },
+    {
+      "source": "unicache/configs/efficiency_mve/understanding_physical.json",
+      "destination": "configs/engine/understanding.json",
+      "source_sha256": "cf1ef05749ebea4f32659e875a589939c57f011c03528040d6c36ac5e4c3277a"
+    },
+    {
+      "source": "unicache/configs/experiments/fixed_type_generation_target60.json",
+      "destination": "configs/torch/text_to_image.json",
+      "source_sha256": "5af2199e0e088c94091d24c26c411f7842a15bbb90d5e6ae0eebd04eb97e1b37"
+    },
+    {
+      "source": "unicache/configs/efficiency_mve/text_to_image_physical.json",
+      "destination": "configs/engine/text_to_image.json",
+      "source_sha256": "8e6bc483201e2f9e02ffd7b7217896e2de563ea450f4b5eae03ecae101271748"
+    },
+    {
+      "source": "unicache/configs/fixed_type_editing.json",
+      "destination": "configs/torch/editing.json",
+      "source_sha256": "1c0df51c936a70e4250d3e48ea504a7c7c2e9ec6f9ff817757b80ec7c2c9f648"
+    },
+    {
+      "source": "unicache/configs/efficiency_mve/editing_physical.json",
+      "destination": "configs/engine/editing.json",
+      "source_sha256": "2c72477cab595509d16caf4039d86098c8e91399d39584d1ffd2da6948b0abe5"
+    }
+  ],
+  "note": "Source hashes identify the export input. Release entrypoints and documentation are subsequently adapted; model/operator kernels are preserved."
+}

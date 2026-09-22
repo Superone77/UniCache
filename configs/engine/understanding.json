@@ -1,0 +1,12 @@
+{
+  "task": {"task_type": "understanding", "prompt": "", "source_images": [], "output_modality": "text"},
+  "plugins": ["bagel_typed", "h2o"],
+  "planners": [{"id": "bagel_typed_segments", "enabled": true}],
+  "rules": [
+    {"id": "instruction_h2o", "match": {"segment_id": "instruction", "phases": ["text_decode"]}, "operator": "h2o_physical_gqa", "params": {"target_budget_ratio": 0.2, "recent_budget_fraction": 0.25, "selection_frozen": true}, "stage": "attention"},
+    {"id": "source_vit_h2o", "match": {"segment_id": "source_vit", "phases": ["text_decode"]}, "operator": "h2o_physical_gqa", "params": {"target_budget_ratio": 0.2, "recent_budget_fraction": 0.25, "selection_frozen": true}, "stage": "attention"},
+    {"id": "boundary_protect", "match": {"segment_id": "boundary"}, "operator": "protect", "stage": "attention"},
+    {"id": "decoded_protect", "match": {"segment_id": "decoded_text"}, "operator": "protect", "stage": "attention"}
+  ],
+  "runtime": {"plan_only": false, "fail_on_conflict": true, "physical_backend": true}
+}

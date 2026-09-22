@@ -1,0 +1,127 @@
+{
+  "task": {
+    "task_type": "understanding",
+    "prompt": "Visual question answering",
+    "source_images": ["runtime-image"],
+    "output_modality": "text"
+  },
+  "plugins": ["bagel_typed", "h2o", "observer"],
+  "planners": [
+    {
+      "id": "bagel_typed_segments",
+      "enabled": true
+    }
+  ],
+  "rules": [
+    {
+      "id": "instruction_h2o",
+      "match": {
+        "segment_id": "instruction",
+        "phases": ["text_decode"]
+      },
+      "operator": "h2o_segment_attention_mask",
+      "params": {
+        "heavy_budget_ratio": 0.375,
+        "recent_budget_ratio": 0.125,
+        "score_source": "pre_eviction_attention"
+      },
+      "scheduler": {
+        "name": "chunked_ema_attention_mass_budget",
+        "params": {
+          "operator": "h2o_segment_attention_mask",
+          "budget_segments": ["instruction", "source_vit"],
+          "total_budget_ratio": 0.5,
+          "fallback_budget_ratio": 0.5,
+          "step_chunk_size": 5,
+          "layer_chunk_size": 4,
+          "first_layer_separate": true,
+          "recent_fraction": 0.25
+        }
+      },
+      "stage": "attention"
+    },
+    {
+      "id": "source_vit_h2o",
+      "match": {
+        "segment_id": "source_vit",
+        "phases": ["text_decode"]
+      },
+      "operator": "h2o_segment_attention_mask",
+      "params": {
+        "heavy_budget_ratio": 0.375,
+        "recent_budget_ratio": 0.125,
+        "score_source": "pre_eviction_attention"
+      },
+      "scheduler": {
+        "name": "chunked_ema_attention_mass_budget",
+        "params": {
+          "operator": "h2o_segment_attention_mask",
+          "budget_segments": ["instruction", "source_vit"],
+          "total_budget_ratio": 0.5,
+          "fallback_budget_ratio": 0.5,
+          "step_chunk_size": 5,
+          "layer_chunk_size": 4,
+          "first_layer_separate": true,
+          "recent_fraction": 0.25
+        }
+      },
+      "stage": "attention"
+    },
+    {
+      "id": "instruction_metrics",
+      "match": {
+        "segment_id": "instruction",
+        "phases": ["text_decode"]
+      },
+      "operator": "block_attention_metrics",
+      "params": {
+        "ema_decay": 0.8,
+        "score_source": "pre_eviction_attention",
+        "step_chunk_size": 5,
+        "layer_chunk_size": 4,
+        "first_layer_separate": true
+      },
+      "priority": -100,
+      "stage": "post_attention"
+    },
+    {
+      "id": "source_vit_metrics",
+      "match": {
+        "segment_id": "source_vit",
+        "phases": ["text_decode"]
+      },
+      "operator": "block_attention_metrics",
+      "params": {
+        "ema_decay": 0.8,
+        "score_source": "pre_eviction_attention",
+        "step_chunk_size": 5,
+        "layer_chunk_size": 4,
+        "first_layer_separate": true
+      },
+      "priority": -100,
+      "stage": "post_attention"
+    },
+    {
+      "id": "protect_boundary",
+      "match": {
+        "segment_id": "boundary",
+        "phases": ["text_decode"]
+      },
+      "operator": "protect",
+      "stage": "attention"
+    },
+    {
+      "id": "protect_decoded_text",
+      "match": {
+        "segment_id": "decoded_text",
+        "phases": ["text_decode"]
+      },
+      "operator": "protect",
+      "stage": "attention"
+    }
+  ],
+  "runtime": {
+    "plan_only": false,
+    "fail_on_conflict": true
+  }
+}

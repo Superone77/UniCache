@@ -1,0 +1,90 @@
+{
+  "task": {
+    "task_type": "text_to_image",
+    "prompt": "Generate an image",
+    "output_modality": "image"
+  },
+  "plugins": ["bagel_typed", "h2o", "observer"],
+  "planners": [
+    {
+      "id": "bagel_typed_segments",
+      "enabled": true
+    }
+  ],
+  "rules": [
+    {
+      "id": "instruction_h2o",
+      "match": {
+        "segment_id": "instruction",
+        "phases": ["denoise"]
+      },
+      "operator": "h2o_segment_attention_mask",
+      "params": {
+        "heavy_budget_ratio": 0.375,
+        "recent_budget_ratio": 0.125,
+        "score_source": "pre_eviction_attention"
+      },
+      "scheduler": {
+        "name": "chunked_ema_attention_mass_budget",
+        "params": {
+          "operator": "h2o_segment_attention_mask",
+          "budget_segments": ["instruction"],
+          "total_budget_ratio": 0.5,
+          "initial_total_budget_ratio": 0.5,
+          "min_total_budget_ratio": 0.35,
+          "fallback_budget_ratio": 0.5,
+          "first_step_full": true,
+          "first_step_separate": true,
+          "conditional_attention_budget_decay": true,
+          "conditional_decay_gamma": 1.0,
+          "monotonic_retirement": true,
+          "step_chunk_size": 5,
+          "layer_chunk_size": 4,
+          "first_layer_separate": true,
+          "recent_fraction": 0.25
+        }
+      },
+      "stage": "attention"
+    },
+    {
+      "id": "instruction_metrics",
+      "match": {
+        "segment_id": "instruction",
+        "phases": ["denoise"]
+      },
+      "operator": "block_attention_metrics",
+      "params": {
+        "ema_decay": 0.8,
+        "score_source": "pre_eviction_attention",
+        "step_chunk_size": 5,
+        "layer_chunk_size": 4,
+        "first_layer_separate": true,
+        "first_step_separate": true
+      },
+      "priority": -100,
+      "stage": "post_attention"
+    },
+    {
+      "id": "protect_boundary",
+      "match": {
+        "segment_id": "boundary",
+        "phases": ["denoise"]
+      },
+      "operator": "protect",
+      "stage": "attention"
+    },
+    {
+      "id": "protect_current_vae",
+      "match": {
+        "segment_id": "current_vae",
+        "phases": ["denoise"]
+      },
+      "operator": "protect",
+      "stage": "attention"
+    }
+  ],
+  "runtime": {
+    "plan_only": false,
+    "fail_on_conflict": true
+  }
+}

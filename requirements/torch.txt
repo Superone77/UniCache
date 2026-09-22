@@ -1,0 +1,14 @@
+# Python 3.10 or 3.11. Install CUDA-enabled PyTorch separately; see README.
+torch==2.5.1
+torchvision==0.20.1
+transformers==4.49.0
+accelerate==0.34.2
+einops==0.8.1
+huggingface_hub==0.29.1
+numpy==1.26.4
+opencv-python-headless==4.10.0.84
+Pillow>=10.0,<12
+safetensors==0.4.5
+sentencepiece==0.1.99
+protobuf>=3.20,<6
+tqdm>=4.66,<5

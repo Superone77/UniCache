@@ -1,0 +1,27 @@
+UniCache inference release
+
+Includes BAGEL model, preprocessing, and inference code:
+Copyright 2025 Bytedance Ltd. and/or its affiliates.
+https://github.com/ByteDance-Seed/BAGEL
+The upstream Apache-2.0 license is reproduced in LICENSE. Original source
+headers are retained. UniCache modifies attention hooks, cache metadata and
+inference execution in its adapted BAGEL sources.
+
+H2O scoring/selection and UniCache segment/GQA adaptations refer to:
+https://github.com/FMInference/H2O
+commit ac75c2a8a9e76832b2a4139b9363373b56336bfb
+The type-aware adapters are not unmodified official H2O implementations.
+
+Packed KIVI is an external build-time/runtime dependency, not bundled:
+https://github.com/jy-yuan/KIVI
+commit 876b4d2d08e3b1d5f70d0969c299d8c7c42ddfb6
+patches/kivi_long_query_outer_dim.patch fixes multi-query addressing.
+Observe the external repository's license when distributing its sources/binaries.
+
+The inherited runtime also contains optional components referring to StreamingLLM,
+SnapKV, PyramidKV, TaylorSeer and DuCa. Feature-reuse helpers are retained as
+BAGEL import dependencies, but are not enabled by release presets. In particular,
+modeling/cache_utils/taylorseer.py retains its original adaptation notice.
+
+Model weights, benchmark data, third-party checkouts and compiled extensions
+are not included and remain subject to their respective licenses.

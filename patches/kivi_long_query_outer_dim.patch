@@ -1,0 +1,27 @@
+diff --git a/quant/csrc/gemv_cuda.cu b/quant/csrc/gemv_cuda.cu
+index cb0df8e..281fb46 100644
+--- a/quant/csrc/gemv_cuda.cu
++++ b/quant/csrc/gemv_cuda.cu
+@@ -281,7 +281,8 @@ __global__ void bgemv4_kernel_outer_dim(
+     const int oc_start_idx = packed_oc_idx * pack_factor;
+     const int group_idx = oc_start_idx / group_size; 
+-    const half* inputs = _inputs + batch_idx * IC;
+-    half* outputs = _outputs + batch_idx * OC;
++    const int query_idx = blockIdx.z;
++    const half* inputs = _inputs + (batch_idx * gridDim.z + query_idx) * IC;
++    half* outputs = _outputs + (batch_idx * gridDim.z + query_idx) * OC;
+     const int ratio = nh / nh_kv;
+     int _batch_idx = batch_idx / ratio;
+     const uint32_t*  weight = _weight + _batch_idx * OC * IC / pack_factor;
+@@ -357,8 +358,9 @@ __global__ void bgemv2_kernel_outer_dim(
+     const int oc_start_idx = packed_oc_idx * pack_factor;
+     const int group_idx = oc_start_idx / group_size; 
+     const int ICR = IC;
+-    const half* inputs = _inputs + batch_idx * ICR;
+-    half* outputs = _outputs + batch_idx * OC;
++    const int query_idx = blockIdx.z;
++    const half* inputs = _inputs + (batch_idx * gridDim.z + query_idx) * ICR;
++    half* outputs = _outputs + (batch_idx * gridDim.z + query_idx) * OC;
+     const int ratio = nh / nh_kv;
+     int _batch_idx = batch_idx / ratio;
+     const uint32_t*  weight = _weight + _batch_idx * OC * IC / pack_factor;

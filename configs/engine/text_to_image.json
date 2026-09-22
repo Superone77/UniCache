@@ -1,0 +1,11 @@
+{
+  "task": {"task_type": "text_to_image", "prompt": "", "source_images": [], "output_modality": "image"},
+  "plugins": ["bagel_typed", "h2o"],
+  "planners": [{"id": "bagel_typed_segments", "enabled": true}],
+  "rules": [
+    {"id": "instruction_h2o", "match": {"segment_id": "instruction", "phases": ["denoise"]}, "operator": "h2o_physical_gqa", "params": {"target_budget_ratio": 0.2, "recent_budget_fraction": 0.25, "selection_frozen": true}, "stage": "attention"},
+    {"id": "boundary_protect", "match": {"segment_id": "boundary"}, "operator": "protect", "stage": "attention"},
+    {"id": "current_vae_protect", "match": {"segment_id": "current_vae"}, "operator": "protect", "stage": "attention"}
+  ],
+  "runtime": {"plan_only": false, "fail_on_conflict": true, "physical_backend": true}
+}
