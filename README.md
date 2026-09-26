@@ -2,11 +2,53 @@
 
 **Task- and Type-Aware KV Cache Compression for Unified Multimodal Models**
 
-Inference-only release for **BAGEL-7B-MoT**, supporting image understanding,
-text-to-image generation, and image editing. UniCache separates semantic KV
-segments, applies type-specific compression policies, and manages their budgets.
-No training, benchmark datasets, model weights, cluster launchers, or experiment
-outputs are included. 
+Wanqi Yang<sup>1,2,3</sup>, Yuexiao Ma<sup>4</sup>, Mei Xie<sup>5</sup>,
+Xiawu Zheng<sup>4</sup>, Shiwei Liu<sup>1,2,3</sup>
+
+<sup>1</sup> Max Planck Institute for Intelligent Systems ·
+<sup>2</sup> ELLIS Institute Tübingen ·
+<sup>3</sup> Tübingen AI Center ·
+<sup>4</sup> Key Laboratory of Multimedia Trusted Perception and Efficient Computing, Xiamen University ·
+<sup>5</sup> Independent Researcher
+
+[Project page](https://superone77.github.io/UniCache/) ·
+[Output gallery](https://superone77.github.io/UniCache/#gallery) ·
+[Installation](#installation) · [Quick start](#quick-start) ·
+[Implementations](#two-implementations) · [Citation](#citation)
+
+UniCache is a training-free framework for KV cache compression in unified
+multimodal models. This inference-only release targets **BAGEL-7B-MoT** and
+supports image understanding, text-to-image generation, and image editing.
+It separates task-specific KV segments, assigns type-specific compression
+policies, and coordinates their budgets using attention statistics.
+
+**Paper:** arXiv coming soon. **Code:** this repository includes both a PyTorch
+reference implementation and a physical CUDA inference engine.
+
+![UniCache image-editing comparison](docs/assets/editing-comparison.png)
+
+The examples above compare Full KV, global H2O, global KIVI, and UniCache at
+high *logical* KV compression. The PyTorch and engine backends have different
+default settings; quality figures and physical-engine throughput should not be
+treated as results from an identical configuration.
+
+No training code, benchmark datasets, model weights, cluster launchers, or
+experiment outputs are included.
+
+## Results at a Glance
+
+| BAGEL method | MME Total ↑ | GenEval Overall ↑ | PIE Structure ↓ | PIE PSNR ↑ |
+| --- | ---: | ---: | ---: | ---: |
+| Full KV | 2373.21 | 0.781 | 0.101 | 18.805 |
+| Global H2O | 2372.60 | 0.777 | 0.125 | 14.663 |
+| Global KIVI | 2362.31 | 0.777 | 0.098 | 18.576 |
+| UniCache | **2377.36** | 0.780 | 0.100 | **18.969** |
+
+The manuscript reports approximately 80% logical KV compression for
+understanding and editing, and approximately 60% for generation. In its
+long-context physical-engine setting, throughput improves by up to 1.78x.
+That measurement is for a single A100 and is not a short-prompt speedup
+guarantee.
 
 ## Two Implementations
 
@@ -169,3 +211,14 @@ python -m unittest discover -s tests -v
 CPU tests exercise selection, cache accounting, protection, configuration and
 attention equivalence on small tensors. CUDA tests require FlashAttention and
 the pinned KIVI dependency. Skipped CUDA tests are not a passing GPU validation.
+
+## Citation
+
+The paper is coming soon on arXiv. Citation details will be added when its
+public version is available.
+
+## License and Attribution
+
+Code is released under the [Apache 2.0 license](LICENSE). Adapted BAGEL code
+and external method attributions are listed in [NOTICE](NOTICE). BAGEL weights
+and the KIVI dependency must be obtained separately under their own terms.
