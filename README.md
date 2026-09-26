@@ -2,15 +2,6 @@
 
 **Task- and Type-Aware KV Cache Compression for Unified Multimodal Models**
 
-Wanqi Yang<sup>1,2,3</sup>, Yuexiao Ma<sup>4</sup>, Mei Xie<sup>5</sup>,
-Xiawu Zheng<sup>4</sup>, Shiwei Liu<sup>1,2,3</sup>
-
-<sup>1</sup> Max Planck Institute for Intelligent Systems ·
-<sup>2</sup> ELLIS Institute Tübingen ·
-<sup>3</sup> Tübingen AI Center ·
-<sup>4</sup> Key Laboratory of Multimedia Trusted Perception and Efficient Computing, Xiamen University ·
-<sup>5</sup> Independent Researcher
-
 [Project page](https://superone77.github.io/UniCache/) ·
 [Output gallery](https://superone77.github.io/UniCache/#gallery) ·
 [Installation](#installation) · [Quick start](#quick-start) ·
