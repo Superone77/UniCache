@@ -1,31 +1,44 @@
+<div align="center">
+
 # UniCache
 
 **Task- and Type-Aware KV Cache Compression for Unified Multimodal Models**
 
-Project page: coming soon ·
-[Installation](#installation) · [Quick start](#quick-start) ·
-[Implementations](#two-implementations) · [Citation](#citation)
+[Project Page](https://superone77.github.io/UniCache/) · [Overview](#overview) · [Results](#results) · [Installation](#installation) ·
+[Quick Start](#quick-start) · [Implementations](#two-implementations) ·
+[Citation](#citation)
 
-UniCache is a training-free framework for KV cache compression in unified
-multimodal models. This inference-only release targets **BAGEL-7B-MoT** and
-supports image understanding, text-to-image generation, and image editing.
-It separates task-specific KV segments, assigns type-specific compression
-policies, and coordinates their budgets using attention statistics.
+Paper coming soon on arXiv.
 
-**Paper:** arXiv coming soon. **Code:** this repository includes both a PyTorch
-reference implementation and a physical CUDA inference engine.
+</div>
 
-![UniCache image-editing comparison](docs/assets/editing-comparison.png)
+<p align="center">
+  <a href="docs/assets/desert-moon.png"><img src="docs/assets/desert-moon.png" alt="Sandstone arch and moon" width="31%"></a>
+  <a href="docs/assets/flower-shop.png"><img src="docs/assets/flower-shop.png" alt="Flower shop after rain" width="31%"></a>
+  <a href="docs/assets/space-garden.png"><img src="docs/assets/space-garden.png" alt="Garden inside a space station" width="31%"></a>
+</p>
 
-The examples above compare Full KV, global H2O, global KIVI, and UniCache at
-high *logical* KV compression. The PyTorch and engine backends have different
-default settings; quality figures and physical-engine throughput should not be
-treated as results from an identical configuration.
+<p align="center"><sub>Image generation with UniCache + BAGEL at approximately 60% logical KV compression. Showcase prompts, not benchmark samples.</sub></p>
+
+## Overview
+
+UniCache is a training-free framework for task- and type-aware KV cache
+compression. It identifies the cache segments activated by each task and
+assigns suitable compression policies through offline calibration. During
+inference, it coordinates their storage budgets through attention-guided
+allocation and task-aware temporal scheduling, then applies the assigned
+policies independently and in parallel.
+
+This inference-only release targets **BAGEL-7B-MoT** and supports image
+understanding, text-to-image generation, and image editing. It includes both a
+PyTorch reference implementation and a physical CUDA inference engine.
+
+[![UniCache framework](docs/assets/framework.png)](docs/assets/framework.png)
 
 No training code, benchmark datasets, model weights, cluster launchers, or
 experiment outputs are included.
 
-## Results at a Glance
+## Results
 
 | BAGEL method | MME Total ↑ | GenEval Overall ↑ | PIE Structure ↓ | PIE PSNR ↑ |
 | --- | ---: | ---: | ---: | ---: |
@@ -39,6 +52,13 @@ understanding and editing, and approximately 60% for generation. In its
 long-context physical-engine setting, throughput improves by up to 1.78x.
 That measurement is for a single A100 and is not a short-prompt speedup
 guarantee.
+
+[![UniCache image-editing comparison](docs/assets/editing-comparison.png)](docs/assets/editing-comparison.png)
+
+The examples compare Full KV, global H2O, global KIVI, and UniCache at high
+*logical* KV compression. The PyTorch and engine backends have different
+default settings; quality figures and physical-engine throughput should not be
+treated as results from an identical configuration.
 
 ## Two Implementations
 
