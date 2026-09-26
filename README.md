@@ -2,8 +2,7 @@
 
 **Task- and Type-Aware KV Cache Compression for Unified Multimodal Models**
 
-[Project page](https://superone77.github.io/UniCache/) ·
-[Output gallery](https://superone77.github.io/UniCache/#gallery) ·
+Project page: coming soon ·
 [Installation](#installation) · [Quick start](#quick-start) ·
 [Implementations](#two-implementations) · [Citation](#citation)
 
