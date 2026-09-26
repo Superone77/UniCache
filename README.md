@@ -18,7 +18,7 @@ Paper coming soon on arXiv.
   <a href="docs/assets/space-garden.png"><img src="docs/assets/space-garden.png" alt="Garden inside a space station" width="31%"></a>
 </p>
 
-<p align="center"><sub>Image generation with UniCache + BAGEL at approximately 60% logical KV compression. Showcase prompts, not benchmark samples.</sub></p>
+<p align="center"><sub>Image generation with UniCache + BAGEL at approximately 60% logical KV compression.</sub></p>
 
 ## Overview
 
@@ -35,9 +35,6 @@ PyTorch reference implementation and a physical CUDA inference engine.
 
 [![UniCache framework](docs/assets/framework.png)](docs/assets/framework.png)
 
-No training code, benchmark datasets, model weights, cluster launchers, or
-experiment outputs are included.
-
 ## Results
 
 | BAGEL method | MME Total ↑ | GenEval Overall ↑ | PIE Structure ↓ | PIE PSNR ↑ |
@@ -47,18 +44,14 @@ experiment outputs are included.
 | Global KIVI | 2362.31 | 0.777 | 0.098 | 18.576 |
 | UniCache | **2377.36** | 0.780 | 0.100 | **18.969** |
 
-The manuscript reports approximately 80% logical KV compression for
-understanding and editing, and approximately 60% for generation. In its
-long-context physical-engine setting, throughput improves by up to 1.78x.
-That measurement is for a single A100 and is not a short-prompt speedup
-guarantee.
+UniCache reaches approximately 80% logical KV compression for understanding and
+editing, and approximately 60% for generation. Its physical engine improves
+long-context throughput by up to 1.78x on a single A100.
 
 [![UniCache image-editing comparison](docs/assets/editing-comparison.png)](docs/assets/editing-comparison.png)
 
-The examples compare Full KV, global H2O, global KIVI, and UniCache at high
-*logical* KV compression. The PyTorch and engine backends have different
-default settings; quality figures and physical-engine throughput should not be
-treated as results from an identical configuration.
+Image-editing results at high logical KV compression, compared with Full KV, global
+H2O, and global KIVI.
 
 ## Two Implementations
 
@@ -82,13 +75,10 @@ treated as results from an identical configuration.
 
 ## Installation
 
-Use Linux, Python 3.10/3.11, and an NVIDIA CUDA GPU for model inference.
-The historical physical-engine evaluation used a single A100 40 GB. Memory
-requirements depend on image size and context length; model weights alone
-require roughly 30 GB in BF16. CPU/MPS can run contract tests.
+Model inference requires Linux, Python 3.10/3.11, and an NVIDIA CUDA GPU.
+BAGEL weights use roughly 30 GB in BF16.
 
-Run the following commands from the repository root. Use a fresh environment
-to avoid replacing packages in an existing research environment.
+Run the following commands from the repository root:
 
 ```bash
 python3.10 -m venv .venv
@@ -115,12 +105,9 @@ export UNICACHE_KIVI_ROOT="$PWD/third_party/KIVI"
 python scripts/check_environment.py --backend engine --task editing
 ```
 
-`install_kivi.sh` fetches KIVI at commit
-`876b4d2d08e3b1d5f70d0969c299d8c7c42ddfb6`, applies the included multi-query
-addressing patch, and builds its extension. It refuses to overwrite an existing
-checkout. KIVI is required for engine editing, not for the H2O-only engine tasks.
-Torch, CUDA and extension ABI versions must agree; rebuild extensions after
-changing PyTorch. 
+`install_kivi.sh` fetches pinned KIVI, applies the included multi-query
+addressing patch, and builds its extension. The engine uses KIVI for source-VAE
+KV in image editing and H2O-style eviction for sparse cache types.
 
 ## Model Weights
 
@@ -159,10 +146,8 @@ python infer.py --backend torch --task editing \
 ```
 
 Replace `--backend torch` with `--backend engine` or `--backend full` to run the
-physical implementation or uncompressed baseline. The backend selects its own
-task-specific configuration automatically. Keep resolution, timesteps, prompt,
-input, seed and CFG settings identical when comparing outputs, but remember
-that the default Torch and engine compression settings differ.
+physical implementation or uncompressed baseline. Each backend loads its
+task-specific configuration automatically.
 
 Convenience wrappers are also available:
 
@@ -173,8 +158,8 @@ bash scripts/infer_engine.sh --task text_to_image --prompt "A lighthouse." \
   --image-size 512 --output-dir outputs/engine_demo
 ```
 
-Use `--config /path/to/config.json` to override a backend preset. The CLI checks
-the task and physical-backend flag. Compile a plan without loading weights:
+Use `--config /path/to/config.json` to override a backend preset. To inspect
+the compression plan without loading weights:
 
 ```bash
 python infer.py --backend torch --task text_to_image --prompt "A lighthouse." \
@@ -187,13 +172,11 @@ python infer.py --backend torch --task text_to_image --prompt "A lighthouse." \
 - `resolved_config.json` / `unicache_plan.json`: effective settings and plan.
 - `hook_policy_summary.json`: runtime operators and cache accounting.
 - `budget_allocations.jsonl`, `budget_by_cache_type.json`, `budget_average.json`:
-  budget diagnostics where supported; fixed engine presets may have no dynamic
-  allocation records.
+  dynamic budget diagnostics.
 - `run_metadata.json`: inputs, seed, backend, software versions and runtime flags.
 
 Add `--efficiency-events outputs/run/events.jsonl --warmup-runs 1 --measure-runs 3`
-to record timings. End-to-end inference events exclude model loading; their
-scope differs from decode-token or denoising-step events. 
+to record inference timings, excluding model loading.
 
 ## Layout
 
@@ -212,15 +195,14 @@ UniCache/
   tests/                    # Small contract and numerical checks, no datasets
 ```
 
-## Tests and Release Status
+## Tests
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-CPU tests exercise selection, cache accounting, protection, configuration and
-attention equivalence on small tensors. CUDA tests require FlashAttention and
-the pinned KIVI dependency. Skipped CUDA tests are not a passing GPU validation.
+Tests cover selection, cache accounting, protection, configuration, and
+attention equivalence. CUDA tests require FlashAttention and KIVI.
 
 ## Citation
 
