@@ -210,14 +210,14 @@ If you find UniCache useful, please cite our
 [paper](https://arxiv.org/abs/2609.32831):
 
 ```bibtex
-@misc{yang2026unicache,
-  title         = {UniCache: Task- and Type-Aware KV Cache Compression for Unified Multimodal Models},
-  author        = {Yang, Wanqi and Ma, Yuexiao and Xie, Mei and Zheng, Xiawu and Liu, Shiwei},
-  year          = {2026},
-  eprint        = {2609.32831},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.LG},
-  url           = {https://arxiv.org/abs/2609.32831}
+@misc{yang2026unicachetasktypeawarekv,
+      title={UniCache: Task- and Type-Aware KV Cache Compression for Unified Multimodal Models}, 
+      author={Wanqi Yang and Yuexiao Ma and Mei Xie and Xiawu Zheng and Shiwei Liu},
+      year={2026},
+      eprint={2609.32831},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2609.32831}, 
 }
 ```
 
